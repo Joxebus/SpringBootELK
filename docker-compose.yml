@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  elk:
+    container_name: 'elk'
+    image: 'sebp/elk'
+    ports:
+      - 4560:4560
+      - 5044:5044
+      - 5601:5601
+      - 9200:9200
+      - 9300:9300
+    volumes:
+      - ./logstash-config:/etc/logstash/conf.d
