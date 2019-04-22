@@ -39,14 +39,28 @@ docker-compose up
 After finish the installation you should be able to log this url `localhost:5601` which is the
 interface for Kibana
 
-Start your spring boot application, then enter into `localhost:5601` and create a new index for pattern
+Start your spring boot application by running the following command
+
+```
+gradle bootRun
+```
+
+Then enter into `localhost:5601` and create a new index for pattern
 `logstash-*` follow the steps in the UI, now you should be able to see at discovery screen your logs.
 
 ## Requirements
 
+- Gradle 4.4+
+- Postman  7.0.9+
+
+# Technologies
+
+- Groovy 2.4.13
 - Java 8
-- Gradle 3.3
-- Postman
+- Spring v5.1.6.RELEASE
+- Spring Boot v2.1.4.RELEASE
+- Spock 1.0-groovy-2.4
+- Spock Spring 1.1-groovy-2.4
 
 ## Run tests
 
