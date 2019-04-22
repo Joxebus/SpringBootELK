@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "b8a4d90c-3aa6-495c-ad5f-b26ab4b89b9c",
+		"name": "PersonServiceOperations",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "People Post",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "cb65dafc-31e9-4691-8baf-b5f035fe6cf3",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "01d7ef3a-face-4183-b80a-9da00908478f"
+					},
+					{
+						"key": "user",
+						"value": "obautista"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"Pedro\",\n\t\"lastName\": \"Duarte\",\n\t\"age\" : 27\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/people/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"people",
+						""
+					]
+				},
+				"description": "Example Spring Boot"
+			},
+			"response": []
+		},
+		{
+			"name": "People List",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "df315da3-5d51-4c91-82bd-85de78a09492",
+						"disabled": true
+					},
+					{
+						"key": "user",
+						"value": "obautista",
+						"disabled": true
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/people/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"people",
+						""
+					]
+				},
+				"description": "Example Spring Boot"
+			},
+			"response": []
+		},
+		{
+			"name": "People Get by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "a5836b92-b4fd-4779-91a9-2ae2f99fab16"
+					},
+					{
+						"key": "user",
+						"value": "obautista"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/people/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"people",
+						"4"
+					]
+				},
+				"description": "Example Spring Boot"
+			},
+			"response": []
+		},
+		{
+			"name": "People Update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": 7,\n        \"name\": \"Pedro\",\n        \"lastName\": \"Duarte\",\n        \"age\": 27,\n        \"phone\": \"234-124-8234\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/people/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"people",
+						""
+					]
+				},
+				"description": "Example Spring Boot"
+			},
+			"response": []
+		},
+		{
+			"name": "People Delete Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/people/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"people",
+						"3"
+					]
+				},
+				"description": "Example Spring Boot"
+			},
+			"response": []
+		}
+	]
+}

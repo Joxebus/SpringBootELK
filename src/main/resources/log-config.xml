@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="logstash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>localhost:4560</destination>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <customFields>{"service_name":"SprngBootELK"}</customFields>
+            <fieldNames>
+                <message>message</message>
+                <level>log_level</level>
+            </fieldNames>
+        </encoder>
+        <keepAliveDuration>5 minutes</keepAliveDuration>
+    </appender>
+
+    <logger name="org.springframework">
+        <level value="WARN"/>
+    </logger>
+    <logger name="org.hibernate">
+        <level value="WARN"/>
+    </logger>
+    <logger name="org.apache">
+        <level value="WARN"/>
+    </logger>
+
+    <logger name="com.zaxxer.hikari">
+        <level value="WARN"/>
+    </logger>
+
+    <logger name="com.nearsoft">
+        <level value="debug"/>
+    </logger>
+    <logger name="com.nearsoft.challenge.config">
+        <level value="info"/>
+    </logger>
+
+    <root level="debug">
+        <appender-ref ref="logstash"/>
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</configuration>

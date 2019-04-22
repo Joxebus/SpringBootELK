@@ -1,0 +1,34 @@
+group 'com.nearsoft'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.4.13'
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+    testCompile 'org.spockframework:spock-spring:1.1-groovy-2.4'
+
+    testRuntime 'cglib:cglib-nodep:3.2.4'       // For mocking classes
+    testCompile 'org.objenesis:objenesis:1.2'   // For mocking final classes
+
+    // Json External API
+    compile "org.glassfish:javax.json:1.1.2"
+
+    // Spring Dependencies
+    compile "org.springframework.boot:spring-boot-starter-web:2.1.4.RELEASE"
+    compile "org.springframework.boot:spring-boot-starter-data-jpa:2.1.4.RELEASE"
+    compile 'net.logstash.logback:logstash-logback-encoder:4.9'
+    testCompile "org.springframework.boot:spring-boot-starter-test:2.1.4.RELEASE"
+
+    // DataBase
+    compile "com.h2database:h2:1.4.197"
+
+}
