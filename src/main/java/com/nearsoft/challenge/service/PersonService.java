@@ -2,13 +2,13 @@ package com.nearsoft.challenge.service;
 
 import com.nearsoft.challenge.entity.Person;
 import com.nearsoft.challenge.repository.PersonRepository;
-import com.nearsoft.challenge.utils.PersonValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonService {
@@ -19,47 +19,50 @@ public class PersonService {
     private PersonRepository personRepository;
 
     public Person create(Person newPerson) {
-        PersonValidator.validate(newPerson);
         Person person = personRepository.save(newPerson);
         logger.debug("Person created: {}", person);
         return person;
     }
 
     public List<Person> findAll() {
-        return personRepository.list();
+        return personRepository.findAll();
     }
 
     public Person update(Person newPerson) {
-        PersonValidator.validate(newPerson);
         if(newPerson.getId() < 1){
             throw new IllegalArgumentException("Can't update person with id ="+newPerson.getId());
         }
-        Person person = personRepository.findById(newPerson.getId());
-        person.setName(newPerson.getName());
-        person.setLastName(newPerson.getLastName());
-        person.setAge(newPerson.getAge());
-        person.setPhone(newPerson.getPhone());
-        person = personRepository.update(person);
-        logger.debug("Person updated: {}", person);
+        Optional<Person> record = personRepository.findById(newPerson.getId());
+        Person person = null;
+        if(record.isPresent()){
+            person = record.get();
+            person.setName(newPerson.getName());
+            person.setLastName(newPerson.getLastName());
+            person.setAge(newPerson.getAge());
+            person.setPhone(newPerson.getPhone());
+            person = personRepository.save(person);
+            logger.debug("Person updated: {}", person);
+        }
+
         return person;
     }
 
     public void delete(int id) {
-        Person person = personRepository.findById(id);
-        if(person == null || person.getId() < 1){
+        Optional<Person> person = personRepository.findById(id);
+        if(!person.isPresent()){
             throw new IllegalArgumentException("Can't delete person with id ="+id);
         }
         logger.debug("Deleting person: {}", person);
-        personRepository.delete(person);
+        personRepository.deleteById(id);
     }
 
     public Person findById(int id) {
-        Person person = personRepository.findById(id);
-        if(person == null){
+        Optional<Person> person = personRepository.findById(id);
+        if(!person.isPresent()){
             throw new IllegalArgumentException("There is no person with id ="+id);
         }
         logger.debug("Person found: {}", person);
-        return person;
+        return person.get();
     }
 
 

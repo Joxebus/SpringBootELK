@@ -3,7 +3,7 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password:
-    url: jdbc:h2:file:~/spboot-elk-ws
+    url: jdbc:h2:file:~/testdb/spboot-elk-ws
   jpa:
     hibernate:
       ddl-auto: update

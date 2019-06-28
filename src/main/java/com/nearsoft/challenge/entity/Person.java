@@ -1,19 +1,33 @@
 package com.nearsoft.challenge.entity;
 
+import org.springframework.lang.NonNull;
+import org.springframework.validation.annotation.Validated;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
+@Validated
 public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @NonNull
+    @Size(min = 1, max = 35, message = "Invalid size")
     private String name;
+    @Size(min = 1, max = 35, message = "Invalid size")
     private String lastName;
+    @Min(value = 18, message = "Min value accepted is 18")
+    @Max(value = 65, message = "Max value accepted is 65")
     private int age;
+    @Pattern(regexp = "(\\d{3})-(\\d{3})-(\\d{4})", message = "Phone format required ###-###-####")
     private String phone;
 
     public int getId() {

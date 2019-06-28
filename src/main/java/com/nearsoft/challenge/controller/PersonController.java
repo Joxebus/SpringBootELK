@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
@@ -32,13 +33,13 @@ public class PersonController {
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
-    public Person create(@RequestBody Person newPerson){
+    public Person create(@Valid @RequestBody Person newPerson){
         Person person = personService.create(newPerson);
         return person;
     }
 
     @PutMapping("/")
-    public Person update(@RequestBody Person newPerson){
+    public Person update(@Valid @RequestBody Person newPerson){
         Person person = personService.update(newPerson);
         return person;
     }
