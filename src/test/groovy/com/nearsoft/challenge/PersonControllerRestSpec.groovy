@@ -112,7 +112,7 @@ class PersonControllerRestSpec extends Specification {
         entity.body.phone     == '552-876-2341'
     }
 
-    def "/people save should throw 400"() {
+    def "/people save should throw 500"() {
         given:
         Person person = new Person()
         person.with {
@@ -130,7 +130,7 @@ class PersonControllerRestSpec extends Specification {
         def entity = restTemplate.postForEntity("/people/", data, Person)
 
         then:
-        entity.statusCode == HttpStatus.BAD_REQUEST
+        entity.statusCode == HttpStatus.INTERNAL_SERVER_ERROR
 
         where:
         newName    |  newLastName   |   newAge  |   newPhone

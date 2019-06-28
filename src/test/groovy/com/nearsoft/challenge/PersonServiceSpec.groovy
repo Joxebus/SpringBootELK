@@ -3,23 +3,24 @@ package com.nearsoft.challenge
 import com.nearsoft.challenge.repository.PersonRepository
 import com.nearsoft.challenge.entity.Person
 import com.nearsoft.challenge.service.PersonService
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
 
+import javax.validation.ConstraintViolationException
+
+@SpringBootTest
 class PersonServiceSpec extends Specification {
 
+    @Autowired
     PersonService personService
-    PersonRepository personRepository
 
     @Shared
     Person person
 
     def setup(){
-        personRepository = Mock()
-        personService = new PersonService(
-                personRepository: personRepository
-        )
         person = new Person()
         person.with {
             name = "Test"
@@ -29,6 +30,11 @@ class PersonServiceSpec extends Specification {
     }
 
     def "Person Service call repository save when entity has valid values"(){
+        given:
+        PersonRepository personRepository = Mock()
+        personService = new PersonService(
+                personRepository: personRepository
+        )
         when:
         personService.create(person)
 
@@ -51,7 +57,7 @@ class PersonServiceSpec extends Specification {
         Person person = personService.create(newPerson)
 
         then:
-        thrown IllegalArgumentException
+        thrown ConstraintViolationException
 
         where:
         newName    |  newLastName   |   newAge  |   newPhone
@@ -63,19 +69,19 @@ class PersonServiceSpec extends Specification {
 
     def "Find a person by id"(){
         given:
-        personRepository = Stub()
+        PersonRepository personRepository = Stub()
         personService = new PersonService(
                 personRepository: personRepository
         )
 
 
         and:
-        personRepository.findById(1) >> new Person([
+        personRepository.findById(1) >> Optional.of(new Person([
                 id:1,
                 name:"some",
                 lastName:"thing",
                 age: 30
-        ])
+        ]))
 
         when:
 
