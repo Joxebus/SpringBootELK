@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
@@ -33,13 +32,13 @@ public class PersonController {
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
-    public Person create(@Valid @RequestBody Person newPerson){
+    public Person create(@RequestBody Person newPerson){
         Person person = personService.create(newPerson);
         return person;
     }
 
     @PutMapping("/")
-    public Person update(@Valid @RequestBody Person newPerson){
+    public Person update(@RequestBody Person newPerson){
         Person person = personService.update(newPerson);
         return person;
     }
@@ -61,9 +60,10 @@ public class PersonController {
     }
 
     @ExceptionHandler
-    void handleIllegalArgumentException(IllegalArgumentException e, HttpServletResponse response)
+    void handleIllegalArgumentException(Exception e, HttpServletResponse response)
             throws IOException {
-        logger.error("The request contains illegal arguments: {}", e.getMessage());
-        response.sendError(HttpStatus.BAD_REQUEST.value());
+        logger.error("An error occurred: {}", e.getMessage(), e);
+        response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        response.addHeader("message", e.getMessage());
     }
 }

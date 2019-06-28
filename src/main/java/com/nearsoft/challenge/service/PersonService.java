@@ -6,11 +6,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 @Service
+@Validated
 public class PersonService {
 
     private static final Logger logger = LoggerFactory.getLogger(PersonService.class);
@@ -18,7 +22,7 @@ public class PersonService {
     @Autowired
     private PersonRepository personRepository;
 
-    public Person create(Person newPerson) {
+    public Person create(@Valid Person newPerson) {
         Person person = personRepository.save(newPerson);
         logger.debug("Person created: {}", person);
         return person;
@@ -28,7 +32,7 @@ public class PersonService {
         return personRepository.findAll();
     }
 
-    public Person update(Person newPerson) {
+    public Person update(@Valid Person newPerson) {
         if(newPerson.getId() < 1){
             throw new IllegalArgumentException("Can't update person with id ="+newPerson.getId());
         }
