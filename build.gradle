@@ -1,4 +1,4 @@
-group 'com.nearsoft'
+group 'io.github.joxebus'
 version '1.0-SNAPSHOT'
 
 buildscript {
