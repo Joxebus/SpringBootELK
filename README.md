@@ -13,20 +13,6 @@ and finally
 
 - Use default gradle wrapper
 
-
-Inside `src/main/resources` a file named **postman_collection.json** is placed, is a configuration
-that can be loaded on postman and contains some examples for the requests.
-
-To see the test results you can open in your browser the **index.html** created under.
-
-```
-build
-|_reports
-  |_tests
-    |_test
-      |_index.html
-```
-
 ## Run docker-compose
 
 There is a docker-compose configuration to setup ELK and the configuration for TCP on logstash,
@@ -39,17 +25,44 @@ docker-compose up
 After finish the installation you should be able to log this url `localhost:5601` which is the
 interface for Kibana
 
-Start your spring boot application by running the following command
+Then enter into `localhost:5601` and create a new index for pattern
+`logstash-*` follow the steps in the UI, now you should be able to see at discovery screen your logs.
+
+# Configure App to log to Logstash
+
+First you need to create a configuration for your logs you can see a sample on the following file.
+```
+src
+└── main
+     └── resources
+            └── log-config.xml
+```
+
+The logstash configuration inside this file means that it will publish the activity of your logs to
+on `localhost:4560` also there you can configure different things like indexes or custom fields to 
+identify your logs on the console.
+
+Now start your spring boot application by running the following command
 
 ```
 gradle bootRun
 ```
 
-Then enter into `localhost:5601` and create a new index for pattern
-`logstash-*` follow the steps in the UI, now you should be able to see at discovery screen your logs.
+## Send requests to your app from Postman
+Inside `src/main/resources` a file named **postman_collection.json** is placed, is a configuration
+that can be loaded on postman and contains some examples for the requests.
+
+## Monitor activity with Kibana
+
+Go to Kibana UI `http://localhost:5601/` click on **Discovery** if you don't have a pattern configured 
+use **logstash*** and then click again on Dicovery, now you are going to be able to see your activity, 
+you can select from the left panel the fields to show.
+
+![Kibana Screenshot](https://github.com/Joxebus/SpringBootELK/blob/master/src/main/resources/screenshots/logstash03.png?raw=true)
 
 ## Requirements
 
+- Docker
 - Gradle 4.4+
 - Postman  7.0.9+
 
@@ -71,3 +84,14 @@ For MacOS and Linux
 or for Windows
 
 `` gradlew.bat test``
+
+To see the test results you can open in your browser the **index.html** created under.
+
+```
+build
+|_reports
+  |_tests
+    |_test
+      |_index.html
+```
+
