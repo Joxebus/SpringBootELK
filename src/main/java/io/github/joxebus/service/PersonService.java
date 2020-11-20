@@ -1,7 +1,7 @@
-package com.nearsoft.challenge.service;
+package io.github.joxebus.service;
 
-import com.nearsoft.challenge.entity.Person;
-import com.nearsoft.challenge.repository.PersonRepository;
+import io.github.joxebus.entity.Person;
+import io.github.joxebus.repository.PersonRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +29,7 @@ public class PersonService {
     }
 
     public List<Person> findAll() {
+        logger.debug("Looking for all people registered");
         return personRepository.findAll();
     }
 

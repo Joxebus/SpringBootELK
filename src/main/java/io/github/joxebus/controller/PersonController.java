@@ -1,7 +1,7 @@
-package com.nearsoft.challenge.controller;
+package io.github.joxebus.controller;
 
-import com.nearsoft.challenge.entity.Person;
-import com.nearsoft.challenge.service.PersonService;
+import io.github.joxebus.entity.Person;
+import io.github.joxebus.service.PersonService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +43,7 @@ public class PersonController {
         return person;
     }
 
-    @GetMapping(value = "/")
+    @GetMapping(value = {"/", ""})
     public List<Person> list(){
         return personService.findAll();
     }

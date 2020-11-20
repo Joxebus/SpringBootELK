@@ -1,4 +1,4 @@
-package com.nearsoft.challenge.entity;
+package io.github.joxebus.entity;
 
 import org.springframework.lang.NonNull;
 import org.springframework.validation.annotation.Validated;

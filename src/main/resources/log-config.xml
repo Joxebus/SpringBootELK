@@ -33,10 +33,10 @@
         <level value="WARN"/>
     </logger>
 
-    <logger name="com.nearsoft">
+    <logger name="io.github.joxebus">
         <level value="debug"/>
     </logger>
-    <logger name="com.nearsoft.challenge.config">
+    <logger name="io.github.joxebus.config">
         <level value="info"/>
     </logger>
 

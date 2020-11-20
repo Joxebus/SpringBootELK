@@ -1,7 +1,7 @@
-package com.nearsoft.challenge
+package io.github.joxebus
 
-import com.nearsoft.challenge.config.Bootstrap
-import com.nearsoft.challenge.service.PersonService
+import io.github.joxebus.config.Bootstrap
+import io.github.joxebus.service.PersonService
 import spock.lang.Specification
 
 class BootstrapSpec extends Specification {

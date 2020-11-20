@@ -1,6 +1,6 @@
-package com.nearsoft.challenge.repository;
+package io.github.joxebus.repository;
 
-import com.nearsoft.challenge.entity.Person;
+import io.github.joxebus.entity.Person;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

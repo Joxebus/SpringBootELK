@@ -1,8 +1,9 @@
-package com.nearsoft.challenge
+package io.github.joxebus
 
-import com.nearsoft.challenge.controller.PersonController
-import com.nearsoft.challenge.entity.Person
-import com.nearsoft.challenge.service.PersonService
+
+import io.github.joxebus.entity.Person
+import io.github.joxebus.service.PersonService
+import io.github.joxebus.controller.PersonController
 import spock.lang.Shared
 import spock.lang.Specification
 
