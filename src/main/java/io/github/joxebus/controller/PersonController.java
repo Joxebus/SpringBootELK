@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
@@ -27,8 +27,11 @@ public class PersonController {
 
     private static final Logger logger = LoggerFactory.getLogger(PersonController.class);
 
-    @Autowired
     private PersonService personService;
+
+    public PersonController(PersonService personService) {
+        this.personService = personService;
+    }
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)

@@ -11,7 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import java.util.List;
 import java.util.Optional;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 @Service
 @Validated
@@ -19,8 +19,11 @@ public class PersonService {
 
     private static final Logger logger = LoggerFactory.getLogger(PersonService.class);
 
-    @Autowired
     private PersonRepository personRepository;
+
+    public PersonService(PersonRepository personRepository) {
+        this.personRepository = personRepository;
+    }
 
     public Person create(@Valid Person newPerson) {
         Person person = personRepository.save(newPerson);
