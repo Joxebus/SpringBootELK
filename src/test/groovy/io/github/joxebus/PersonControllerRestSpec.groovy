@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import spock.lang.Specification
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = AppTest)
 class PersonControllerRestSpec extends Specification {
 
     @Autowired

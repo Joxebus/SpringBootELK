@@ -1,17 +1,16 @@
 package io.github.joxebus
 
-import io.github.joxebus.repository.PersonRepository
 import io.github.joxebus.entity.Person
+import io.github.joxebus.repository.PersonRepository
 import io.github.joxebus.service.PersonService
+import jakarta.validation.ConstraintViolationException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
 
-import javax.validation.ConstraintViolationException
-
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = AppTest)
 class PersonServiceSpec extends Specification {
 
     @Autowired
@@ -32,9 +31,7 @@ class PersonServiceSpec extends Specification {
     def "Person Service call repository save when entity has valid values"(){
         given:
         PersonRepository personRepository = Mock()
-        personService = new PersonService(
-                personRepository: personRepository
-        )
+        personService = new PersonService(personRepository)
         when:
         personService.create(person)
 
@@ -70,9 +67,7 @@ class PersonServiceSpec extends Specification {
     def "Find a person by id"(){
         given:
         PersonRepository personRepository = Stub()
-        personService = new PersonService(
-                personRepository: personRepository
-        )
+        personService = new PersonService(personRepository)
 
 
         and:

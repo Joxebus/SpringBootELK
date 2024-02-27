@@ -16,9 +16,7 @@ class PersonControllerSpec extends Specification {
 
     def setup(){
         personService = Mock()
-        personController = new PersonController(
-                personService: personService
-        )
+        personController = new PersonController(personService)
         person = new Person([
                 name: "Test",
                 lastName: "Interaction",

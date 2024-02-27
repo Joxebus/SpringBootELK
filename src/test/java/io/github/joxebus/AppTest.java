@@ -2,20 +2,13 @@ package io.github.joxebus;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-@RestController
-public class App {
-
-    @GetMapping("/")
-    public String home(){
-        return "Welcome to Groovy Challenge";
-    }
+public class AppTest {
 
     public static void main(String... args){
         SpringApplication.run(App.class, args);

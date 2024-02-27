@@ -26,7 +26,7 @@ After finish the installation you should be able to log this url `localhost:5601
 interface for Kibana
 
 Then enter into `localhost:5601` and create a new index for pattern
-`logstash-*` follow the steps in the UI, now you should be able to see at discovery screen your logs.
+`logs-*` follow the steps in the UI, now you should be able to see at discovery screen your logs.
 
 # Configure App to log to Logstash
 
@@ -63,17 +63,17 @@ you can select from the left panel the fields to show.
 ## Requirements
 
 - Docker
-- Gradle 4.4+
+- Gradle 8.0+
 - Postman  7.0.9+
 
 # Technologies
 
-- Groovy 2.4.13
-- Java 8
-- Spring v5.1.6.RELEASE
-- Spring Boot v2.1.4.RELEASE
-- Spock 1.0-groovy-2.4
-- Spock Spring 1.1-groovy-2.4
+- Groovy 4.0+
+- Java 17
+- Spring 6.1.4
+- Spring Boot 3.2.3
+- Spock 2.4-M1-groovy-2.4
+- Spock Spring 2.4-M1-groovy-2.4
 
 ## Run tests
 
